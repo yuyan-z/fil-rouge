@@ -1,8 +1,8 @@
 public class Place extends PetriElement{
-    int nTokens;
+    private int nTokens;
 
 	// constructeur
-    Place(String s, int n) {
+    public Place(String s, int n) {
         this.id = s;
         this.nTokens = n;
     }

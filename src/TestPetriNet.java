@@ -1,5 +1,3 @@
-
-
 public class TestPetriNet{
    
    public static boolean isPositiveInt(int n){

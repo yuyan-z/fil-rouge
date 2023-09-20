@@ -5,8 +5,8 @@ public class Transition extends PetriElement{
     private List<Arc> inArcs = new ArrayList<Arc>();
     private List<Arc> outArcs = new ArrayList<Arc>();
 
-    // constructeur
-    Transition(String s) {
+    // constructor
+    public Transition(String s) {
         this.id = s;
     }
 

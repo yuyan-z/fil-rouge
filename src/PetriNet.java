@@ -2,9 +2,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PetriNet {
-    List<Place> places = new ArrayList<Place>();
-    List<Transition> transitions = new ArrayList<Transition>();
-    List<Arc> arcs = new ArrayList<Arc>();
+    private List<Place> places = new ArrayList<Place>();
+    private List<Transition> transitions = new ArrayList<Transition>();
+    private List<Arc> arcs = new ArrayList<Arc>();
 
     // place
     public void addPlace(int nTokens) {

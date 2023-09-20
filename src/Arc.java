@@ -1,8 +1,8 @@
 public class Arc extends PetriElement{
-    Place place;
-	Transition transition;
-	String direction;  // “p2t” or “t2p”
-	int weight = 1;
+    private Place place;
+	private Transition transition;
+	private String direction;  // “p2t” or “t2p”
+	private int weight = 1;
 
     // constructeurs
     Arc(String s, Place p, Transition t, int w) {
