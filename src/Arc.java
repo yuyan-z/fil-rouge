@@ -5,30 +5,54 @@ public class Arc extends PetriElement{
 	int weight = 1;
 
     // constructeurs
-    Arc(String id, Place p, Transition t, int w) {
+    Arc(String s, Place p, Transition t, int w) {
+        this.id = s;
         this.place = p;
         this.transition = t;
         this.direction = "p2t";
         this.weight = w;
     }
-    Arc(String id, Transition t, Place p, int w) {
+    Arc(String s, Transition t, Place p, int w) {
+        this.id = s;
         this.place = p;
         this.transition = t;
         this.direction = "t2p";
         this.weight = w;
     }
 
-    public int get_weight() {
+    public int getWeight() {
         return this.weight;
     }
 
-    public void set_weight(int w) {
+    public void setWeight(int w) {
         this.weight = w;
     }
 
-    public boolean is_triggable() {
-        boolean res = false;
+    public Place getPlace() {
+        return this.place;
+    }
 
+    public boolean isTriggable() {
+        boolean res = false;
+        if (this.direction == "p2t" && this.place.getNTokens() >= this.weight) {
+            res = true;
+        }
         return res;
+    }
+
+    @Override
+    public String toString() {
+        String res;
+        if (this.direction == "p2t") {
+            res = this.place.getId() + "->" + this.transition.getId();
+        }
+        else {
+            res = this.transition.getId() + "->" + this.place.getId();
+        }
+        return this.id + " " + res + " weight=" + Integer.toString(this.weight);
+    }
+
+    public String toString(boolean forTransition) {
+        return this.id;
     }
 }
