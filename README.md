@@ -14,6 +14,12 @@
 ![image](https://github.com/yuyan-z/fil-rouge/assets/64955334/cdb3c9ad-ec47-4856-8e48-5599ad980b3a)
 ![image](https://github.com/yuyan-z/fil-rouge/assets/64955334/bdd8d4ce-9a12-4b27-816d-c4c339655dad)
 
+5. Remove the place (and the related arcs)  
+   Remove the arc (and modify the related transitions)  
+   Remove the transition (and the related arcs)
+![image](https://github.com/yuyan-z/fil-rouge/assets/64955334/b1778143-2ea8-445c-9ca9-fc920de0095f)
+
+
 
 
 
