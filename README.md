@@ -10,12 +10,11 @@
 
 ![image](https://github.com/yuyan-z/fil-rouge/assets/64955334/0ad2be24-da34-4698-a1f3-0e7aa9e60b0d)
 
-4. Change a0 to ZeroArc
-Set p1 nToken=2
-Add p4 nToken=4
-Add EmptyArc a4
-Set p2 weight 1  
-![image](https://github.com/yuyan-z/fil-rouge/assets/64955334/51c33e34-6346-42e9-b552-1899beb91d07)
+4. Change a0 to ZeroArc \\
+Set p1 nToken=2 \\
+Add p4 nToken=4 \\
+Add EmptyArc a4 \\
+Set p2 weight 1 \\
 
 ![image](https://github.com/yuyan-z/fil-rouge/assets/64955334/cdb3c9ad-ec47-4856-8e48-5599ad980b3a)
 
