@@ -3,14 +3,14 @@ public class EmptyArc implements IArc{
     private Place place;
 	private Transition transition;
     
-    // constructors
+    /* constructors */
     public EmptyArc(String s, Place p, Transition t) {
         id = s;
         place = p;
         transition = t;
     }
 
-    // methods
+    /* methods */
     @Override
     public String getId() {
         return id;
@@ -32,6 +32,17 @@ public class EmptyArc implements IArc{
     }
 
     @Override
+    public void setWeight(int w) {
+        return;
+    }
+
+    @Override
+    public String getDirection() {
+        return "p2t";
+    }
+
+
+    @Override
     public boolean isFirable() {
         boolean res = false;
         if (place.getNTokens() >= 1) {
@@ -42,6 +53,6 @@ public class EmptyArc implements IArc{
 
     @Override
     public String toString() {
-        return "(" + place.getId() + "->" + transition.getId() + ")";
+        return "(" + place.getId() + "->" + transition.getId() + " EmptyArc)";
     }
 }

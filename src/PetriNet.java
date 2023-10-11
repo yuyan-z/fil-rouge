@@ -22,10 +22,11 @@ public class PetriNet implements IPetri{
 
     /* methods */
     // place
-    public void addPlace(int nTokens) {
+    public void addPlace(int nTokens) throws PetriException {
+        if (nTokens < 0) throw new PetriException("Error: nTokens should >= 0");
+
         String id = "p" + Integer.toString(idxPlace);
         places.put(id, new Place(id, nTokens));
-        this.dispaly();
         ++idxPlace;
     }
 
@@ -41,14 +42,19 @@ public class PetriNet implements IPetri{
         }
 
         places.remove(id);
-        this.dispaly();
     }
+
+    public void setPlaceNTokens(String id, int nTokens) throws PetriException {
+        if (nTokens < 0) throw new PetriException("Error: nTokens should >= 0");
+        
+        places.get(id).setNTokens(nTokens);
+    }
+
 
     // transistion
     public void addTransition() {
         String id = "t" + Integer.toString(idxTransition);
         transitions.put(id, new Transition(id));
-        this.dispaly();
         ++idxTransition;
     }
 
@@ -63,16 +69,14 @@ public class PetriNet implements IPetri{
         }
 
         transitions.remove(id);
-        this.dispaly();
     }
 
-    public void doTransition(String id) {
+    public void doTransition(String id) throws PetriException {
         Transition transition = transitions.get(id);
-        boolean isFired = transition.fire();
+        if (transition == null) throw new PetriException("Error: id");
 
-        if (isFired) {
+        if (transition.fire()) {
             System.out.println(transition.getId() + " fired");
-            this.dispaly();
         }
         else{
             System.out.println(transition.getId() + " can't fire");
@@ -80,85 +84,69 @@ public class PetriNet implements IPetri{
         }
     }
     
+
     // arc
-    public void addArc(String sourceId, String targetId, int weight) {
-        Place place;
-        Transition transition;
-        Arc arc;
+    public void addArc(String sourceId, String targetId, int weight) throws PetriException {
+        if (weight < 1) throw new PetriException("Error: weight should >= 1");
 
         String sourceType = getTypeById(sourceId);
         String targetType = getTypeById(targetId);
         String id = "a" + Integer.toString(idxArc);
+        IArc arc;
 
         if (sourceType == "p" && targetType == "t") {
-            place = places.get(sourceId);
-            transition = transitions.get(targetId);
+            Place place = places.get(sourceId);
+            Transition transition = transitions.get(targetId);
+            if (place == null || transition == null) throw new PetriException("Error: sourceId or targetId");
+    
             arc = new Arc(id, place, transition, weight);
             transition.addInArc(arc);
         }
         else if (sourceType == "t" && targetType == "p") {
-            place = places.get(targetId);
-            transition = transitions.get(sourceId);
+            Place place = places.get(targetId);
+            Transition transition = transitions.get(sourceId);
+            if (place == null || transition == null) throw new PetriException("Error: sourceId or targetId");
+
             arc = new Arc(id, transition, place, weight);
             transition.addOutArc(arc);
         }
-        else{
-            System.out.println("Error!");
-            return;
-        }
+        else throw new PetriException("Error: sourceId or targetId");
 
         arcs.put(id, arc);
-        this.dispaly();
         ++idxArc;
     }
 
-    public void addZeroArc(String sourceId, String targetId) {
-        Place place;
-        Transition transition;
-        IArc arc;
+    public void setArcWeight(String id, int weight) throws PetriException {
+        if (weight < 1) throw new PetriException("Error: weight should >= 1");
 
-        String sourceType = getTypeById(sourceId);
-        String targetType = getTypeById(targetId);
-        String id = "a" + Integer.toString(idxArc);
-
-        if (sourceType == "p" && targetType == "t") {
-            place = places.get(sourceId);
-            transition = transitions.get(targetId);
-            arc = new ZeroArc(id, place, transition);
-            transition.addInArc(arc);
+        if (arcs.get(id).getClass().getSimpleName().equals("Arc")) {
+            arcs.get(id).setWeight(weight);
         }
-        else{
-            System.out.println("Error!");
-            return;
-        }
-
-        arcs.put(id, arc);
-        this.dispaly();
-        ++idxArc;
+        else throw new PetriException("Error: should be Arc");
     }
 
-    public void addEmptyArc(String sourceId, String targetId) {
-        Place place;
-        Transition transition;
-        IArc arc;
+    public void addZeroArc(String sourceId, String targetId) throws PetriException {
+        Place place = places.get(sourceId);
+        Transition transition = transitions.get(targetId);
+        if (place == null || transition == null) throw new PetriException("Error: sourceId or targetId");
 
-        String sourceType = getTypeById(sourceId);
-        String targetType = getTypeById(targetId);
         String id = "a" + Integer.toString(idxArc);
-
-        if (sourceType == "p" && targetType == "t") {
-            place = places.get(sourceId);
-            transition = transitions.get(targetId);
-            arc = new EmptyArc(id, place, transition);
-            transition.addInArc(arc);
-        }
-        else{
-            System.out.println("Error!");
-            return;
-        }
-
+        IArc arc = new ZeroArc(id, place, transition);
+        transition.addInArc(arc);
         arcs.put(id, arc);
-        this.dispaly();
+        ++idxArc;
+
+    }
+
+    public void addEmptyArc(String sourceId, String targetId) throws PetriException {
+        Place place = places.get(sourceId);
+        Transition transition = transitions.get(targetId);
+        if (place == null || transition == null) throw new PetriException("Error: sourceId or targetId");
+
+        String id = "a" + Integer.toString(idxArc);
+        IArc arc = new EmptyArc(id, place, transition);
+        transition.addInArc(arc);
+        arcs.put(id, arc);
         ++idxArc;
     }
 
@@ -170,20 +158,94 @@ public class PetriNet implements IPetri{
             item.getValue().removeArc(arc);
         }
         arcs.remove(id);
-        this.dispaly();
+    }
+
+    public void changeArcType(String id, String type) throws PetriException {
+        if (arcs.get(id).getClass().getSimpleName().equals(type)) throw new PetriException("Error: type should be different");
+        if (arcs.get(id).getDirection() == "t2p") throw new PetriException("Error: arc should be place->transition");
+
+        // create a new arc with the same id
+        Place place = arcs.get(id).getPlace();
+        Transition transition = arcs.get(id).getTransition();
+
+        if (type.equals("ZeroArc")) {
+            IArc arc = new ZeroArc(id, place, transition);
+            removeArc(id);  // remove original arc
+            transition.addInArc(arc);
+            arcs.put(id, arc);
+        }
+        else if (type.equals("EmptyArc")) {
+            IArc arc = new EmptyArc(id, place, transition);
+            removeArc(id);  // remove original arc
+            transition.addInArc(arc);
+            arcs.put(id, arc);
+        }
+        else if (type.equals("Arc")) {
+            IArc arc = new Arc(id, place, transition, 1);
+            removeArc(id);  // remove original arc
+            transition.addInArc(arc);
+            arcs.put(id, arc);
+        }
+        else {
+            throw new PetriException("Error: type should be Arc/ZeroArc/EmptyArc !");
+        }
     }
 
     public String getTypeById(String ref) {
         return ref.substring(0, 1).intern();
     }
 
-    public void dispaly() {
+    public void display() {
+        String placesStr = "";
+        String transitionsStr = "";
+        String arcsStr = "";
+
         System.out.printf("places: ");
-        System.out.println(places);
+        for (Map.Entry<String, Place> entry : places.entrySet()) {
+            if (placesStr == "") {
+                placesStr = entry.getKey() + entry.getValue().toString();
+            }
+            else {
+                placesStr = placesStr + ", " + entry.getKey() + entry.getValue().toString();
+            }
+        }
+        System.out.println(placesStr);
+
         System.out.printf("transitions: ");
-        System.out.println(transitions);
+        for (Map.Entry<String, Transition> entry : transitions.entrySet()) {
+            if (transitionsStr == "") {
+                transitionsStr = entry.getKey() + entry.getValue().toString();
+            }
+            else {
+                transitionsStr = transitionsStr + ", " + entry.getKey() + entry.getValue().toString();
+            }
+        }
+        System.out.println(transitionsStr);
+
         System.out.printf("arcs: ");
-        System.out.println(arcs);
+        for (Map.Entry<String, IArc> entry : arcs.entrySet()) {
+            if (arcsStr == "") {
+                arcsStr = entry.getKey() + entry.getValue().toString();
+            }
+            else {
+                arcsStr = arcsStr + ", " + entry.getKey() + entry.getValue().toString();
+            }
+        }
+        System.out.println(arcsStr);
+
         System.out.println("------");
     }
+}
+
+
+class PetriException extends Exception {
+	private String msg;
+
+	public PetriException(String s) {
+		msg = s;
+	}
+
+	public String getMsg() {
+		return msg;
+	}
 }

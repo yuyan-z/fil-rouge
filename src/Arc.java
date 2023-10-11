@@ -3,7 +3,7 @@ public class Arc implements IArc{
     private Place place;
 	private Transition transition;
     private String direction;
-    private int weight;
+    private int weight;  // positive
 
     /* constructors */
     public Arc(String s, Place p, Transition t, int w) {
@@ -42,6 +42,12 @@ public class Arc implements IArc{
         return weight;
     }
 
+    @Override
+    public String getDirection() {
+        return direction;
+    }
+
+    @Override
     public void setWeight(int w) {
         weight = w;
     }

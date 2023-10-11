@@ -32,6 +32,16 @@ public class ZeroArc implements IArc{
     }
 
     @Override
+    public void setWeight(int w) {
+        return;
+    }
+
+    @Override
+    public String getDirection() {
+        return "p2t";
+    }
+
+    @Override
     public boolean isFirable() {
         boolean res = false;
         // when the source place has no tokens, it's firable
@@ -43,6 +53,6 @@ public class ZeroArc implements IArc{
 
     @Override
     public String toString() {
-        return "(" + place.getId() + "->" + transition.getId() + ")";
+        return "(" + place.getId() + "->" + transition.getId() + " ZeroArc)";
     }
 }
