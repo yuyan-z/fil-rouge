@@ -6,7 +6,12 @@
 ![image](https://github.com/yuyan-z/fil-rouge/assets/64955334/1ffd5a4f-f9ce-49c1-80f6-7f730603b19a)
 
 3. Do transition, the first time can run, the second time can't
-![image](https://github.com/yuyan-z/fil-rouge/assets/64955334/77edd7d1-1f4e-40e6-a934-d698e501afb8)
+![image](https://github.com/yuyan-z/fil-rouge/assets/64955334/e78a91eb-7b7f-4a7d-aa80-bb53036fdc14)
+
+![image](https://github.com/yuyan-z/fil-rouge/assets/64955334/0ad2be24-da34-4698-a1f3-0e7aa9e60b0d)
+
+5. 
+
 
 
 
