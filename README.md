@@ -12,8 +12,9 @@
 
 4. Modify the Petrinet, and fire the transition
 ![image](https://github.com/yuyan-z/fil-rouge/assets/64955334/cdb3c9ad-ec47-4856-8e48-5599ad980b3a)
-![image](https://github.com/yuyan-z/fil-rouge/assets/64955334/1d8fb28a-10be-4c75-9a42-10800a6e8c63)
 ![image](https://github.com/yuyan-z/fil-rouge/assets/64955334/bdd8d4ce-9a12-4b27-816d-c4c339655dad)
+
+
 
 
 
