@@ -1,30 +1,36 @@
-public class Place extends PetriElement{
+public class Place{
+    private String id;
     private int nTokens;
 
-	// constructeur
+	/* constructor */
     public Place(String s, int n) {
-        this.id = s;
-        this.nTokens = n;
+        id = s;
+        nTokens = n;
     }
 
+    /* methods */
 	public int getNTokens() {
         return nTokens;
     }
 
 	public void setNTokens(int n) {
-        this.nTokens = n;
+        nTokens = n;
     }
 
 	public void removeTokens(int n) {
-        this.nTokens -= n;
+        nTokens -= n;
     }
 
 	public void addTokens(int n) {
-        this.nTokens += n;
+        nTokens += n;
+    }
+    
+    public String getId() {
+        return id;
     }
 
     @Override
     public String toString() {
-        return this.id + " nTokens=" + this.nTokens;
+        return "(nTokens=" + nTokens + ")";
     }
 }

@@ -1,55 +1,92 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Transition extends PetriElement{
-    private List<Arc> inArcs = new ArrayList<Arc>();
-    private List<Arc> outArcs = new ArrayList<Arc>();
+public class Transition{
+    private String id;
+    private List<IArc> inArcs;
+    private List<IArc> outArcs;
 
-    // constructor
+    /* constructor */
     public Transition(String s) {
-        this.id = s;
+        id = s;
+        inArcs = new ArrayList<IArc>();
+        outArcs = new ArrayList<IArc>();
     }
 
-    public void addInArcs(Arc a) {
-        this.inArcs.add(a);
+    /* methods */
+    public void addInArc(IArc a) {
+        inArcs.add(a);
     }
 
-    public void addOutArcs(Arc a) {
-        this.outArcs.add(a);
+    public void addOutArc(IArc a) {
+        outArcs.add(a);
     }
 
-    // trigger the transition
-    public boolean trigger() {
-        boolean isAllTriggable = true;
+    public void removeArc(IArc a) {
+        inArcs.remove(a);
+        outArcs.remove(a);
+    }
 
-        // check if all the arcs in inArcs are triggable
-        for (int i = 0; i < this.inArcs.size(); i++) {
-            Arc arc = this.inArcs.get(i);
-            if (arc.isTriggable() == false) {
-                isAllTriggable = false;
+    // fire the transition
+    public boolean fire() {
+        boolean isAllFirable = true;
+
+        // check if all the arcs in inArcs are firable
+        for (int i = 0; i < inArcs.size(); i++) {
+            IArc arc = inArcs.get(i);
+            if (arc.isFirable() == false) {
+                isAllFirable = false;
                 break;
             }
         }
 
-        if (isAllTriggable) {
+        if (isAllFirable) {
             // remove tokens from the source places
-            for (int i = 0; i < this.inArcs.size(); i++) {
-                Arc arc = this.inArcs.get(i);
-                arc.getPlace().removeTokens(arc.getWeight());
+            for (int i = 0; i < inArcs.size(); i++) {
+                IArc arc = inArcs.get(i);
+                if(arc.getWeight() > 0) {
+                    arc.getPlace().removeTokens(arc.getWeight());
+                }
             }
 
             // add tokens to the target places
             for (int i = 0; i < this.outArcs.size(); i++) {
-                Arc arc = this.outArcs.get(i);
+                IArc arc = outArcs.get(i);
+
                 arc.getPlace().addTokens(arc.getWeight());
             }
         }
 
-        return isAllTriggable;
+        return isAllFirable;
+    }
+
+    public String getId() {
+        return id;
     }
 
     @Override
     public String toString() {
-        return this.id + " inArcs=" + this.inArcs + " outArcs=" + this.outArcs;
+        String inArcStr = "";
+        String outArcStr = "";
+
+        for (IArc arc : inArcs) {
+            if(inArcStr == "") {
+                inArcStr = inArcStr + arc.getId();
+            }
+            else{
+                inArcStr = inArcStr + ", " + arc.getId();
+            }
+        }
+
+        for (IArc arc : outArcs) {
+            if(outArcStr == "") {
+                outArcStr = outArcStr + arc.getId();
+            }
+            else{
+                outArcStr = outArcStr + ", " + arc.getId();
+            }
+        }
+
+        return "(inArcs=[" + inArcStr + "] outArcs=[" + outArcStr + "])";
     }
 }
