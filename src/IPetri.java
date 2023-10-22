@@ -1,4 +1,4 @@
-public interface IPetri{
+public interface IPetri {
     public void addPlace(int nTokens) throws PetriException;
     public void removePlace(String id);
     public void setPlaceNTokens(String id, int nTokens) throws PetriException;

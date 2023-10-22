@@ -1,14 +1,23 @@
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.awt.*;
+import javax.swing.*;
 
-public class PetriNet implements IPetri{
+
+public class PetriNet implements IPetri {
     private Map<String, Place> places;
     private Map<String, Transition> transitions;
     private Map<String, IArc> arcs;
     private int idxPlace;
     private int idxTransition;
     private int idxArc;
+
+    private int FRAME_WIDTH = 600;
+    private int FRAME_HEIGHT = 400;
+    private int SQUARE_SIZE = 30;
+    private int CIRCLE_SIZE = 50;
+    private int MARGIN = 10;
 
     /* constructor */
     public PetriNet() {
@@ -234,6 +243,30 @@ public class PetriNet implements IPetri{
         System.out.println(arcsStr);
 
         System.out.println("------");
+    }
+
+    public void draw() {
+        // create the JFrame window
+        JFrame frame = new JFrame("Petri Net Simulation");
+        frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);  // set frame visible
+
+        // inner class
+        class PetriPanel extends JPanel {
+            @Override
+            public void paintComponent(Graphics g) {
+                super.paintComponent(g);
+
+                for (Map.Entry<String, Transition> entry : transitions.entrySet()) {
+                    entry.getValue().drawTransition(g, SQUARE_SIZE, CIRCLE_SIZE, MARGIN);
+                }
+            }
+        }
+        
+        // create the panel
+        PetriPanel petripanel = new PetriPanel();
+        frame.add(petripanel);
     }
 }
 

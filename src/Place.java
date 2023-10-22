@@ -1,4 +1,6 @@
-public class Place{
+import java.awt.*;
+
+public class Place {
     private String id;
     private int nTokens;
 
@@ -33,4 +35,17 @@ public class Place{
     public String toString() {
         return "(nTokens=" + nTokens + ")";
     }
+
+    public void drawPlace(Graphics g, int x, int y, int circleSize) {
+        // draw place
+        Graphics2D g2d = (Graphics2D) g.create();
+        g2d.setColor(Color.BLUE);
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+        g2d.drawOval(x , y, circleSize, circleSize);
+        g2d.drawString(id, x + circleSize / 2 - 5, y + circleSize + 10);
+        g2d.drawString(String.valueOf(nTokens), x + circleSize / 2 - 5, y + circleSize / 2 + 5);
+    }
+
+
 }
