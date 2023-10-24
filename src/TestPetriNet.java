@@ -1,5 +1,6 @@
-import org.junit.Test;
+import java.util.Scanner;
 
+import org.junit.Test;
 
 public class TestPetriNet {
    @Test(expected = PetriException.class)
@@ -35,7 +36,7 @@ public class TestPetriNet {
    }
 
    @Test(expected = PetriException.class)
-   public void setArcWeight() throws PetriException {
+   public void testArcWeight() throws PetriException {
       PetriNet petrinet = new PetriNet();
       petrinet.addPlace(1);
       petrinet.addTransition();
@@ -44,27 +45,9 @@ public class TestPetriNet {
    }
 
 
-   public static void main(String args[]) {
-   //    try {
-   //       PetriNet petrinet = new PetriNet();
-
-   //       petrinet.addPlace(1);
-   //       petrinet.addPlace(3);
-   //       petrinet.addPlace(0);
-   //       petrinet.addPlace(1);
-   //       petrinet.addTransition();
-   //       petrinet.addArc("p0", "t0", 1);
-   //       petrinet.addArc("p1", "t0", 2);
-   //       petrinet.addArc("t0", "p2", 3);
-   //       petrinet.addArc("t0", "p3", 1);
-   //       petrinet.draw();
-   //    }
-   //    catch (PetriException e) {
-   //       System.out.println(e.getMsg());
-   //   }
-      try {
+   public static void main(String args[]) throws Exception {
          PetriNet petrinet = new PetriNet();
-
+         
          petrinet.addPlace(1);
          petrinet.addPlace(3);
          petrinet.addPlace(0);
@@ -77,24 +60,22 @@ public class TestPetriNet {
          petrinet.addArc("t0", "p2", 3);
          petrinet.addArc("t0", "p3", 1);
          petrinet.display();
-         // petrinet.draw();
+         petrinet.draw();
 
-
-         petrinet.doTransition("t0");
-         petrinet.display();
-         // petrinet.draw();
-      
-         petrinet.doTransition("t0");
-
-         petrinet.changeArcType("a0", "ZeroArc");
-         petrinet.setPlaceNTokens("p1", 2);
-         petrinet.addPlace(4);
-         petrinet.addEmptyArc("p4", "t0");
-         petrinet.setArcWeight("a2", 1);
-         petrinet.display();
          petrinet.doTransition("t0");
          petrinet.display();
          petrinet.draw();
+
+         // petrinet.doTransition("t0");
+
+         // petrinet.changeArcType("a0", "ZeroArc");
+         // petrinet.setPlaceNTokens("p1", 2);
+         // petrinet.addPlace(4);
+         // petrinet.addEmptyArc("p4", "t0");
+         // petrinet.setArcWeight("a2", 1);
+         // petrinet.display();
+         // petrinet.doTransition("t0");
+         // petrinet.display();
 
          // petrinet.removePlace("p0");
          // petrinet.display();
@@ -102,10 +83,6 @@ public class TestPetriNet {
          // petrinet.display();
          // petrinet.removeTransition("t0");
          // petrinet.display();
-      }
-      catch (PetriException e) {
-         System.out.println(e.getMsg());
-     }
    }
 }
 

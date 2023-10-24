@@ -14,7 +14,5 @@ public interface IPetri {
     public void setArcWeight(String id, int weight) throws PetriException;
     public void changeArcType(String id, String type) throws PetriException;
     
-    public String getTypeById(String ref);
     public void display();
-    
 }

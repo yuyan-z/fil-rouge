@@ -1,5 +1,3 @@
-import java.awt.*;
-
 public class EmptyArc implements IArc {
     private String id;
     private Place place;
@@ -56,23 +54,5 @@ public class EmptyArc implements IArc {
     @Override
     public String toString() {
         return "(" + place.getId() + "->" + transition.getId() + " EmptyArc)";
-    }
-
-    @Override
-    public void drawArc(Graphics g, int tx, int ty, int px, int py, int sqaureSize, int circleSize, double i) {
-        int ax1 = tx + (int)((sqaureSize * 3 / 4)* Math.cos(i * Math.PI));
-        int ay1 = ty - (int)((sqaureSize * 3 / 4)* Math.sin(i * Math.PI));
-        int ax2 = px + circleSize / 2 - (int)((circleSize / 2) * Math.cos(i * Math.PI));
-        int ay2 = py + circleSize / 2 + (int)((circleSize / 2) * Math.sin(i * Math.PI));
-        double ratio = 0.15;
-        Graphics2D g2d = (Graphics2D) g.create();
-        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-
-        g2d.drawLine(ax1, ay1, ax2, ay2);
-
-        g2d.drawLine(ax2, ay2, ax2 - (int)(10 * Math.cos((i + ratio) * Math.PI)), ay2 + (int)(10 * Math.sin((i + ratio) * Math.PI)));
-        g2d.drawLine(ax2, ay2, ax2 - (int)(10 * Math.cos((i - ratio) * Math.PI)), ay2 + (int)(10 * Math.sin((i - ratio) * Math.PI)));
-
-        g2d.drawString("empty", (ax1 + ax2) / 2, (ay1 + ay2) / 2);
     }
 }
