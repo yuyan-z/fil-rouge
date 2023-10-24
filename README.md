@@ -1,4 +1,4 @@
-## Test
+## Example
 ![image](https://github.com/yuyan-z/fil-rouge/assets/64955334/e78a91eb-7b7f-4a7d-aa80-bb53036fdc14)
 
 1. Add places and a transition
