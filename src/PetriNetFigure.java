@@ -3,7 +3,7 @@ import javax.swing.*;
 import java.util.Map;
 
 public class PetriNetFigure {
-    private int FRAME_WIDTH = 600;
+    private int FRAME_WIDTH = 400;
     private int FRAME_HEIGHT = 400;
     private int SQUARE_SIZE = 30;
     private int CIRCLE_SIZE = 50;
@@ -26,8 +26,8 @@ public class PetriNetFigure {
         petrinet = pn;
     }
 
-    public void drawPetriNet() {
-        JFrame frame = new JFrame("Petri Net Simulation");
+    public void drawPetriNet(String title) {
+        JFrame frame = new JFrame(title);
         PetriPanel petripanel = new PetriPanel();
 
         frame.add(petripanel);

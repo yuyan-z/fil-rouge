@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 import org.junit.Test;
 
 public class TestPetriNet {
@@ -60,29 +58,31 @@ public class TestPetriNet {
          petrinet.addArc("t0", "p2", 3);
          petrinet.addArc("t0", "p3", 1);
          petrinet.display();
-         petrinet.draw();
+         petrinet.draw("Petri Net Simulation 1");
 
          petrinet.doTransition("t0");
          petrinet.display();
-         petrinet.draw();
+         petrinet.draw("Petri Net Simulation 2");
 
-         // petrinet.doTransition("t0");
+         petrinet.doTransition("t0");
 
-         // petrinet.changeArcType("a0", "ZeroArc");
-         // petrinet.setPlaceNTokens("p1", 2);
-         // petrinet.addPlace(4);
-         // petrinet.addEmptyArc("p4", "t0");
-         // petrinet.setArcWeight("a2", 1);
-         // petrinet.display();
-         // petrinet.doTransition("t0");
-         // petrinet.display();
+         petrinet.changeArcType("a0", "ZeroArc");
+         petrinet.setPlaceNTokens("p1", 2);
+         petrinet.addPlace(4);
+         petrinet.addEmptyArc("p4", "t0");
+         petrinet.setArcWeight("a2", 1);
+         petrinet.display();
+         petrinet.draw("Petri Net Simulation 3");
+         petrinet.doTransition("t0");
+         petrinet.display();
+         petrinet.draw("Petri Net Simulation 4");
 
-         // petrinet.removePlace("p0");
-         // petrinet.display();
-         // petrinet.removeArc("a1");
-         // petrinet.display();
-         // petrinet.removeTransition("t0");
-         // petrinet.display();
+         petrinet.removePlace("p0");
+         petrinet.display();
+         petrinet.removeArc("a1");
+         petrinet.display();
+         petrinet.removeTransition("t0");
+         petrinet.display();
    }
 }
 

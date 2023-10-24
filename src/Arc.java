@@ -21,7 +21,6 @@ public class Arc implements IArc {
         weight = w;
     }
 
-    /* methods */
     @Override
     public String getId() {
         return id;

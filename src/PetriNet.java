@@ -26,7 +26,7 @@ public class PetriNet implements IPetri {
 
         String id = "p" + Integer.toString(idxPlace);
         places.put(id, new Place(id, nTokens));
-        ++idxPlace;
+        ++ idxPlace;
     }
 
     public void removePlace(String id) {
@@ -49,12 +49,10 @@ public class PetriNet implements IPetri {
         places.get(id).setNTokens(nTokens);
     }
 
-
-    // transistion
     public void addTransition() {
         String id = "t" + Integer.toString(idxTransition);
         transitions.put(id, new Transition(id));
-        ++idxTransition;
+        ++ idxTransition;
     }
 
     public void removeTransition(String id) {
@@ -82,8 +80,6 @@ public class PetriNet implements IPetri {
         }
     }
     
-
-    // arc
     public void addArc(String sourceId, String targetId, int weight) throws PetriException {
         if (weight < 1) throw new PetriException("Error: weight should >= 1");
 
@@ -109,7 +105,7 @@ public class PetriNet implements IPetri {
         } else throw new PetriException("Error: sourceId or targetId");
 
         arcs.put(id, arc);
-        ++idxArc;
+        ++ idxArc;
     }
 
     public void setArcWeight(String id, int weight) throws PetriException {
@@ -129,8 +125,7 @@ public class PetriNet implements IPetri {
         IArc arc = new ZeroArc(id, place, transition);
         transition.addInArc(arc);
         arcs.put(id, arc);
-        ++idxArc;
-
+        ++ idxArc;
     }
 
     public void addEmptyArc(String sourceId, String targetId) throws PetriException {
@@ -142,7 +137,7 @@ public class PetriNet implements IPetri {
         IArc arc = new EmptyArc(id, place, transition);
         transition.addInArc(arc);
         arcs.put(id, arc);
-        ++idxArc;
+        ++ idxArc;
     }
 
     public void removeArc(String id) {
@@ -156,7 +151,9 @@ public class PetriNet implements IPetri {
     }
 
     public void changeArcType(String id, String type) throws PetriException {
-        if (arcs.get(id).getClass().getSimpleName().equals(type)) throw new PetriException("Error: type should be different");
+        // if the given type is the same as the current type, return
+        if (arcs.get(id).getClass().getSimpleName().equals(type)) return;
+        // the IArc with t2p cannot be changed 
         if (arcs.get(id).getDirection() == "t2p") throw new PetriException("Error: arc should be place->transition");
 
         // create a new arc with the same id
@@ -229,9 +226,9 @@ public class PetriNet implements IPetri {
         return transitions;
     }
 
-    public void draw() {
+    public void draw(String title) {
         PetriNetFigure figure = new PetriNetFigure(this);
-        figure.drawPetriNet();
+        figure.drawPetriNet(title);
         try {
             Thread.sleep(500);
         } catch (InterruptedException e) {
