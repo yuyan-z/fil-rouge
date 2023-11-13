@@ -13,44 +13,43 @@ EmptyArc, Transition, PetriNet, and the interfaces IArc, IPetriNet.
 It includes the nTokens attribute, as well as methods for
 obtaining, setting, adding and decreasing the number of tokens in the
 place. 
-+ **public Place(String id, int nTokens)** \\ 
-Constructor for creating a new place. \\ 
-Parameters:
-id: a string representing the unique identifier for the place.
++ **public Place(String id, int nTokens)**  
+Constructor for creating a new place.  
+Parameters:  
+id: a string representing the unique identifier for the place.  
 nTokens: an integer representing the initial number of tokens in the place. Must be non-negative. If provided with a negative value, it will be set to 0.
 
-+ **public int getNTokens()**
-Get the number of tokens currently in the place.
-Returns:
-An integer representing the number of tokens in the place.
-+ **public void setNTokens(int n)**
-Set the number of tokens in the place.
-Parameters:
-n: an integer representing the number of tokens. Must be non-negative. If provided with a negative value, an error message will be printed, and the number of tokens will not be updated.
-+ **public void removeTokens(int n)**
-Remove a specified number of tokens from the place.
-Parameters:
-n: an integer representing the number of tokens to be removed. Must be non-negative. If provided with a negative value, an error message will be printed, and the number of tokens will not be updated.
-+ **public void addTokens(int n)**
-Add a specified number of tokens to the place.
-Parameters:
-n: an integer representing the number of tokens to be added. Must be non-negative. If provided with a negative value, an error message will be printed, and the number of tokens will not be updated.
-+ **public String getId()**
-Get the unique identifier of the place.
-Returns:
-A string representing the unique identifier of the place.
++ **public int getNTokens()**  
+Get the number of tokens currently in the place.  
+Returns:  
+An integer representing the number of tokens in the place.  
++ **public void setNTokens(int n)**  
+Set the number of tokens in the place.  
+Parameters:  
+n: an integer representing the number of tokens. Must be non-negative. If provided with a negative value, an error message will be printed, and the number of tokens will not be updated.  
++ **public void removeTokens(int n)**  
+Remove a specified number of tokens from the place.  
+Parameters:  
+n: an integer representing the number of tokens to be removed. Must be non-negative. If provided with a negative value, an error message will be printed, and the number of tokens will not be updated.  
++ **public void addTokens(int n)**  
+Add a specified number of tokens to the place.  
+Parameters:  
+n: an integer representing the number of tokens to be added. Must be non-negative. If provided with a negative value, an error message will be printed, and the number of tokens will not be updated.  
++ **public String getId()**  
+Get the unique identifier of the place.  
+Returns:  
+A string representing the unique identifier of the place.  
 
 
-## class Arc, ZeroArc and EmptyArc
-The Arc class includes weight, direction, place and transition
-attributes. But in the ZeroArc and EmptyArc classes, they only have a fixed direction from
-place to transition and have a fixed weight. 
-+ isFirable() in Arc class:
-return true when the number of tokens in the source place is greater
-than the weight of the arc entering transition.
-+ isFirable() in ZeroArc class: return true when the number of tokens in the source place is 0.
-+ isFirable() in EmptyArc class: return true when the number of tokens in
-the source place is equal or greater than 1.
+## class Arc, ZeroArc and EmptyArc  
+The Arc class includes weight, direction, place and transition  
+attributes. But in the ZeroArc and EmptyArc classes, they only have a fixed direction from  
+place to transition and have a fixed weight.  
++ isFirable() in Arc class:  
+return true when the number of tokens in the source place is greater  
+than the weight of the arc entering transition.  
++ isFirable() in ZeroArc class: return true when the number of tokens in the source place is 0.  
++ isFirable() in EmptyArc class: return true when the number of tokens in the source place is equal or greater than 1.
 
 ## class Transition
 It includes inArcs and outArcs attributes of type List
