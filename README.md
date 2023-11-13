@@ -12,17 +12,17 @@ The constructor for creating a PetriNet.
 It initializes a HashMap of places, a HashMap of transitions and a HashMap of arcs. There are also index for place, transition, and arc with a view to naming their id.  
 + **public void addPlace(int n)**  
 Add a place to the Petri Net with an initial number of tokens.
-Parameters:
+Parameters:  
 n: an integer representing the initial number of tokens in the place. If n is negative, an error message is printed.  
 + **public void removePlace(String id)**  
-Remove a place from the Petri Net by its unique identifier.
-Parameters:
-id: a string representing the unique identifier of the place to be removed.
+Remove a place from the Petri Net by its unique identifier.  
+Parameters:  
+id: a string representing the unique identifier of the place to be removed.  
 + **public void addPlaceTokens(String id, int n)**  
 Add tokens to a selected place. If n is negative or the selected place is null, an error message is printed.  
-Parameters:
-id: the unique identifier of the place to add tokens to.
-n: an integer representing the number of tokens to add. 
+Parameters:  
+id: the unique identifier of the place to add tokens to.  
+n: an integer representing the number of tokens to add.  
 + **public void removePlaceTokens(String id, int n)**  
 Remove tokens from a selected place. If n is negative or the selected place is null, an error message is printed.  
 Parameters:  
@@ -32,17 +32,17 @@ n: an integer representing the number of tokens to remove.
 Set the number of tokens in a selected place. If n is negative or the selected place is null, an error message is printed.  
 Parameters:  
 id: the unique identifier of the place.  
-n: an integer representing the new number of tokens.
+n: an integer representing the new number of tokens.  
 + **public int getNTokens(String id)**  
 Get the number of tokens in a selected place. If the selected place is null, an error message is printed.  
 Parameters:  
 id: the unique identifier of the place.  
 Returns:  
 An integer representing the number of tokens in the selected place.  
-+ **public void addTransition()**
++ **public void addTransition()**  
 Add a transition to the Petri Net.  
 + **public void removeTransition(String id)**  
-Remove a transition from the Petri Net by its unique identifier.
+Remove a transition from the Petri Net by its unique identifier.  
 Parameters:  
 id: a string representing the unique identifier of the transition to be removed.  
 + **public void fireTransition(String id)**  
@@ -66,7 +66,7 @@ Parameters:
 sourceId: the unique identifier of the source object (either a place or a transition).  
 targetId: the unique identifier of the target object (either a place or a transition).  
 + **public void addZeroArc(String sourceId, String targetId)**  
-Add a zero arc connecting a source and target object. If the source or target object doesn't exist or if an arc in the same direction already exists, an error message is printed.   
+Add a zero arc connecting a source and target object. If the source or target object doesn't exist or if an arc in the same direction already exists, an error message is printed.  
 Parameters:  
 sourceId: the unique identifier of the source object (either a place or a transition).  
 targetId: the unique identifier of the target object (either a place or a transition).  
@@ -74,24 +74,23 @@ targetId: the unique identifier of the target object (either a place or a transi
 Remove a selected arc, empty arc, or zero arc by its unique identifier. If the selected arc is null, an error message is printed.  
 Parameters:  
 id: the unique identifier of the arc to be removed.  
-+ **public String toString()**
++ **public String toString()**  
 Print the Petri Net.
-+ **public void draw()** 
-Draw the figure of the Petri Net using Swing\'s JFrame.
+Return:
+The string to describe the Petri Net.  
++ **public void draw()**  
+Draw the figure of the Petri Net using Swing\'s JFrame.  
 
-## PetriNetFigure class: 
-It contains functions to draw arcs, places,
-transitions and simulate 2D Petri Net on JFrame.
+## class PetriNetFigure
+It contains functions to draw arcs, places, transitions and simulate 2D Petri Net on JFrame.  
 
 ## class Place
-It includes the nTokens attribute, as well as methods for
-obtaining, setting, adding and decreasing the number of tokens in the
-place. 
+It includes the nTokens attribute, as well as methods for obtaining, setting, adding and decreasing the number of tokens in the place.  
 + **public Place(String id, int nTokens)**  
 Constructor for creating a new place.  
 Parameters:  
 id: a string representing the unique identifier for the place.  
-nTokens: an integer representing the initial number of tokens in the place. Must be non-negative. If provided with a negative value, it will be set to 0.
+nTokens: an integer representing the initial number of tokens in the place. Must be non-negative. If provided with a negative value, it will be set to 0.  
 + **public int getNTokens()**  
 Get the number of tokens currently in the place.  
 Returns:  
