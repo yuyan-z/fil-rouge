@@ -52,14 +52,27 @@ than the weight of the arc entering transition.
 + isFirable() in EmptyArc class: return true when the number of tokens in the source place is equal or greater than 1.
 
 ## class Transition
-It includes inArcs and outArcs attributes of type List
-\< IArc \> as well as the fire() method for firing the transition. 
-+ addInArc(): add an arc conneting from a place to a transition to the
-list.
-+ addOutArc(): add an arc conneting from a transition to a place
-to the list.
-+ fire(): checks if the Petri net can be fired. If it can be fired, remove tokens from source places and add tokens to destination
-places.
+It includes inArcs and outArcs attributes of type List \< IArc \> as well as the fire() method for firing the transition. 
++ **public Transition(String id)**  
+Constructor for creating a new transition.  
+Parameters:  
+id: a string representing the unique identifier for the transition.  
++ public void addInArc(IArc a)  
+Add an incoming arc (IArc) to the transition.  
+Parameters:  
+a: an incoming arc that connects a place to the transition.  
++ **public void addOutArc(IArc a)**  
+Add an outgoing arc (IArc) to the transition.  
+Parameters:  
+a: an outgoing arc that connects the transition to a place.  
++ **public void removeArc(IArc a)**  
+Remove an arc (IArc) from the transition's list of incoming and outgoing arcs.  
+Parameters:  
+a: the arc to be removed.  
++ **public boolean fire()**
+Checks if the Petri net can be fired. If it can be fired, remove tokens from source places and add tokens to destination
+places.  
+Returns: true if all the incoming arcs are firable, and the transition is fired; otherwise, false.
 
 ## class PetriNet
 It contains the main functions of the Petri net. 
