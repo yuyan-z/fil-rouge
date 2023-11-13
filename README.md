@@ -18,7 +18,6 @@ Constructor for creating a new place.
 Parameters:  
 id: a string representing the unique identifier for the place.  
 nTokens: an integer representing the initial number of tokens in the place. Must be non-negative. If provided with a negative value, it will be set to 0.
-
 + **public int getNTokens()**  
 Get the number of tokens currently in the place.  
 Returns:  
@@ -36,16 +35,29 @@ Add a specified number of tokens to the place.
 Parameters:  
 n: an integer representing the number of tokens to be added. Must be non-negative. If provided with a negative value, an error message will be printed, and the number of tokens will not be updated.  
 
-
-## class Arc, ZeroArc and EmptyArc  
-The Arc class includes weight, direction, place and transition  
-attributes. But in the ZeroArc and EmptyArc classes, they only have a fixed direction from  
-place to transition and have a fixed weight.  
-+ isFirable() in Arc class:  
-return true when the number of tokens in the source place is greater  
-than the weight of the arc entering transition.  
-+ isFirable() in ZeroArc class: return true when the number of tokens in the source place is 0.  
-+ isFirable() in EmptyArc class: return true when the number of tokens in the source place is equal or greater than 1.
+## Interface IArc, class Arc, class ZeroArc, class EmptyArc
+IArc interface provides abstract methods to be implemented in Arc, ZeroArc and EmptyArc classes.  
+The Arc class includes weight, direction, place and transition as attributes.  
+But in the ZeroArc and EmptyArc classes, they only have a fixed direction from place to transition and have a fixed weight.
++ **public int getWeight()**  
+Get the weight of the arc. For EmptyArc, weight = nTokens of the connected place; for ZeroArc, weight = 0.  
+Returns:  
+An integer representing the weight of the arc.  
++ **public void setWeight(int w)**  
+Set the weight of the arc. For EmptyArc and ZeroArc, do nothing.  
+Parameters:  
+w: an integer representing the new weight to be set for the arc.  
++ **public String getDirection()**  
+Get the direction of the arc. For EmptyArc and ZeroArc, direction is p2t.  
+Returns:  
+A string representing the direction of the arc.  
++ **public boolean isFirable()**  
+Check if the arc is firable.  
+For Arc, it's firable when the number of tokens in the source place is equal or greater than the weight of the arc entering transition;  
+For EmptyArc, it's firable when the number of tokens in the source place is equal or greater than 1.  
+For ZeroArc, it's firable when the number of tokens in the source place is 0;  
+Returns:  
+true if the arc is firable; otherwise, false.  
 
 ## class Transition
 It includes inArcs and outArcs attributes of type List \< IArc \> as well as the fire() method for firing the transition. 
@@ -116,9 +128,7 @@ places, transitions and arcs.
 It contains functions to draw arcs, places,
 transitions and simulate 2D Petri Net on JFrame.
 
-## IArc interface
-It provides abstract methods to be implemented in Arc,
-ZeroArc and EmptyArc classes.
+
 
 ## IPetri interface
 It provides methods for to be implemented in PetriNet
