@@ -16,15 +16,15 @@ place. + removeTokens(): will remove out the desired number of tokens in
 the place. + addTokens(): will add the desired number of tokens into the
 place.
 
-## class Arc (normal arcs), ZeroArc (zero arcs) and EmptyArc (empty arcs)
+## class Arc, ZeroArc and EmptyArc
 The Arc class includes weight, direction, place and transition
-attributes. But in the ZeroArc and EmptyArc classes, we don\'t need the
-weight and direction attributes because they only have a direction from
-place to transition and have no weight. + isFirable() in Arc class:
+attributes. But in the ZeroArc and EmptyArc classes, they only have a fixed direction from
+place to transition and have a fixed weight. 
++ isFirable() in Arc class:
 return true when the number of tokens in the source place is greater
-than the weight of the arc entering transition. + isFirable() in ZeroArc
-class: return true when the number of tokens in the source place is 0. +
-isFirable() in EmptyArc class: return true when the number of tokens in
+than the weight of the arc entering transition.
++ isFirable() in ZeroArc class: return true when the number of tokens in the source place is 0.
++ isFirable() in EmptyArc class: return true when the number of tokens in
 the source place is equal or greater than 1s.
 
 ## class Transition
