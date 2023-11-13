@@ -9,14 +9,15 @@ In our project, there are various classes and interfaces for
 implementing the Petri net, including the classes Place, Arc, ZeroArc,
 EmptyArc, Transition, PetriNet, and the interfaces IArc, IPetriNet.
 
-\- Place class: includes the nTokens attribute, as well as methods for
+## class Place
+It includes the nTokens attribute, as well as methods for
 obtaining, setting, adding and decreasing the number of tokens in the
 place. + removeTokens(): will remove out the desired number of tokens in
 the place. + addTokens(): will add the desired number of tokens into the
 place.
 
-\- Arc (normal arcs), ZeroArc (zero arcs) and EmptyArc (empty arcs)
-classes: the Arc class includes weight, direction, place and transition
+## class Arc (normal arcs), ZeroArc (zero arcs) and EmptyArc (empty arcs)
+The Arc class includes weight, direction, place and transition
 attributes. But in the ZeroArc and EmptyArc classes, we don\'t need the
 weight and direction attributes because they only have a direction from
 place to transition and have no weight. + isFirable() in Arc class:
@@ -26,7 +27,8 @@ class: return true when the number of tokens in the source place is 0. +
 isFirable() in EmptyArc class: return true when the number of tokens in
 the source place is equal or greater than 1s.
 
-\- Transition class: includes inArcs and outArcs attributes of type List
+## class Transition
+It includes inArcs and outArcs attributes of type List
 \< IArc \> as well as the fire() method for firing the transition. +
 addInArc(): add an arc conneting from a place to a transition to the
 list. + addOutArc(): add an arc conneting from a transition to a place
@@ -34,7 +36,8 @@ to the list. + fire(): checks if the Petri net can be fired. If it can
 be fired, remove tokens from source places and add tokens to destination
 places.
 
-\- PetriNet class: contains the main functions of the Petri net. + The
+## class PetriNet
+It contains the main functions of the Petri net. + The
 constructor instantiate a HashMap of places, a HashMap of transitions
 and a HashMap of arcs. There are also index for place, transition, and
 arc with a view to naming their id. + addPlace(): add a place to the Map
@@ -65,19 +68,17 @@ Petri net on the console + draw() method for visualization using
 Swing\'s JFrame tool, illustrating Petri net simulation with real
 places, transitions and arcs.
 
-\- PetriNetFigure class: contains functions to draw arcs, places,
+## PetriNetFigure class: 
+It contains functions to draw arcs, places,
 transitions and simulate 2D Petri Net on JFrame.
 
-\- IArc interface: provides abstract methods to be implemented in Arc,
+## IArc interface
+It provides abstract methods to be implemented in Arc,
 ZeroArc and EmptyArc classes.
 
-\- IPetri interface: provides methods for to be implemented in PetriNet
+## IPetri interface
+It provides methods for to be implemented in PetriNet
 class.
-
-To simulate the Petri net and see the result, enter the TestPetriNet
-class and execute the program. We will need to adjust parameter values
-such as weights, number of tokens, change the arc type, or add more
-squares, arcs, transitions and so on.
 
 ## Example
 ![image](https://github.com/yuyan-z/fil-rouge/assets/64955334/e78a91eb-7b7f-4a7d-aa80-bb53036fdc14)
