@@ -1,119 +1,83 @@
 # Project: Petri net
 
-A Petri net is made up of places (represented by circles), which contain
-tokens, and transitions (represented by squares). Arcs (carrying a
-weight) link places to transitions (arcs leaving squares) and
-transitions to places (arcs entering squares).
+A Petri net is made up of places which contain tokens, transitions and arcs that carry a weight linking places to transitions or transitions to places.
 
-In our project, there are various classes and interfaces for
-implementing the Petri net, including the classes Place, Arc, ZeroArc,
-EmptyArc, Transition, PetriNet, and the interfaces IArc, IPetriNet.
+In our project, there are various classes and interfaces for implementing the Petri net.
+The visibility of the class PetriNet is `public`, which provides interfaces for users. While the visibility of class Place, Transition, Arc, EmptyArc, ZeroArc is `defaut`, which can prevent users from directly modifying objects of these classes. For example, it can prevent users from directly calling the constructors of these classes to generate objects that are not added to Petri Net.
 
 ## Interface IPetriNet, class PetriNet
-PetriNet class contains the main functions for Petri Net simulation and implemented the interface IPerinet.
+PetriNet class contains the main functions for Petri Net simulation and implemented the interface IPerinet.  
 + **public PetriNet()**
 The constructor for creating a PetriNet.  
-It initializes a HashMap of places, a HashMap of transitions and a HashMap of arcs. There are also index for place, transition, and arc with a view to naming their id.
+It initializes a HashMap of places, a HashMap of transitions and a HashMap of arcs. There are also index for place, transition, and arc with a view to naming their id.  
 + **public void addPlace(int n)**
 Add a place to the Petri Net with an initial number of tokens.
 Parameters:
-n: an integer representing the initial number of tokens in the place. If n is negative, an error message is printed.
+n: an integer representing the initial number of tokens in the place. If n is negative, an error message is printed.  
 + **public void removePlace(String id)**
 Remove a place from the Petri Net by its unique identifier.
 Parameters:
 id: a string representing the unique identifier of the place to be removed.
 + **public void addPlaceTokens(String id, int n)**
-Add tokens to a selected place.
+Add tokens to a selected place. If n is negative or the selected place is null, an error message is printed.  
 Parameters:
 id: the unique identifier of the place to add tokens to.
-n: an integer representing the number of tokens to add. If n is negative or the selected place is null, an error message is printed.
+n: an integer representing the number of tokens to add. 
 + **public void removePlaceTokens(String id, int n)**
-Remove tokens from a selected place.
-Parameters:
-id: the unique identifier of the place to remove tokens from.
-n: an integer representing the number of tokens to remove. If n is negative or the selected place is null, an error message is printed.
-+ **public void setPlaceNTokens(String id, int n)**
-Set the number of tokens in a selected place.
-Parameters:
-id: the unique identifier of the place.
-n: an integer representing the new number of tokens. If n is negative or the selected place is null, an error message is printed.
-+ **public int getNTokens(String id)**
-Get the number of tokens in a selected place.
-Parameters:
-id: the unique identifier of the place.
-Returns:
-An integer representing the number of tokens in the selected place. If the selected place is null, an error message is printed.
-Managing Transitions
+Remove tokens from a selected place. If n is negative or the selected place is null, an error message is printed.  
+Parameters:  
+id: the unique identifier of the place to remove tokens from.  
+n: an integer representing the number of tokens to remove.  
++ **public void setPlaceNTokens(String id, int n)**  
+Set the number of tokens in a selected place. If n is negative or the selected place is null, an error message is printed.  
+Parameters:  
+id: the unique identifier of the place.  
+n: an integer representing the new number of tokens.
++ **public int getNTokens(String id)**  
+Get the number of tokens in a selected place. If the selected place is null, an error message is printed.  
+Parameters:  
+id: the unique identifier of the place.  
+Returns:  
+An integer representing the number of tokens in the selected place.  
 + **public void addTransition()**
-Add a transition to the Petri Net.
-+ **public void removeTransition(String id)**
+Add a transition to the Petri Net.  
++ **public void removeTransition(String id)**  
 Remove a transition from the Petri Net by its unique identifier.
-Parameters:
-id: a string representing the unique identifier of the transition to be removed.
-public void fireTransition(String id)
-Fire a selected transition, representing an event or state change in the Petri Net.
-Parameters:
-id: the unique identifier of the transition to fire. If the selected transition is null, an error message is printed.
-Managing Arcs
-+ **public void addArc(String sourceId, String targetId, int weight)**
-Add a regular arc by specifying the source and target objects and the arc's weight.
-Parameters:
-sourceId: the unique identifier of the source object (either a place or a transition).
-targetId: the unique identifier of the target object (either a place or a transition).
-weight: an integer representing the weight of the arc. If the weight is not positive, an error message is printed. If the source or target object doesn't exist or if an arc in the same direction already exists, an error message is printed.
-+ **public void setArcWeight(String id, int weight)**
-Set the weight of a selected regular arc.
-Parameters:
-id: the unique identifier of the arc.
-weight: an integer representing the new weight to set for the arc. If the weight is not positive or if the selected object is not an instance of the Arc class, an error message is printed.
-+ **public void addEmptyArc(String sourceId, String targetId)**
-Add an empty arc connecting a source and target object.
-Parameters:
-sourceId: the unique identifier of the source object (either a place or a transition).
-targetId: the unique identifier of the target object (either a place or a transition). If the source or target object doesn't exist, an error message is printed.
-+ **public void addZeroArc(String sourceId, String targetId)**
-Add a zero arc connecting a source and target object.
-Parameters:
-sourceId: the unique identifier of the source object (either a place or a transition).
-targetId: the unique identifier of the target object (either a place or a transition). If the source or target object doesn't exist, an error message is printed.
-+ **public void removeIArc(String id)**
-Remove a selected arc, empty arc, or zero arc by its unique identifier.
-Parameters:
-id: the unique identifier of the arc to be removed. If the selected arc is null, an error message is printed.
-
-+ removePlace(): remove place out of Petri net if its
-id is equivalent to one of those in the key set.
-+ setPlaceTokens(): set
-the number of tokens in the place according to its id. If the added
-tokens number is negative, throw exception.
-+ addTransitoin(): add a transition to the Map with their id defined by the index.
-+ removeTransition(): remove transition out of Petri net if its id is
-equivalent to one of those in the key set. 
-+ fireTransition(): if there is
-no transition, throw exception. If Petri net can be fired, print out
-that transition is fired; else print out transition cannot fire.
-+ addArc(): first, check whether this arc is incoming or outgoing type.
-Then check this arc will link which place to which transition. Based on
-its characteristics, it will be added to either outgoing arc list or
-incoming arc list. Finally, update the HashMap of Arc. If any condition
-is not satisfied, throw exception.
-+ setArcWeight(): set arc weight if
-weight is superior to 1, else throw exception.
-+ addZeroArc()/
-addEmptyArc(): add an zero arc/ empty arc to the list if it links a
-place to a transition, else throw exception.
-+ removeArc(): remove arc
-out of Petri net if its id is equivalent to one of those in the key
-set.
-+ changeArcType(): first, get the arc that needs changing and check
-if it exists in the Petri net and it is an incoming arc. Based on the
-id, we will remove the original arc and create a new arc with its new
-type and the same id.
-+ display(): shows the result after firing the
-Petri net on the console
-+ draw() method for visualization using
-Swing\'s JFrame tool, illustrating Petri net simulation with real
-places, transitions and arcs.
+Parameters:  
+id: a string representing the unique identifier of the transition to be removed.  
++ **public void fireTransition(String id)**  
+Fire a selected transition. If the selected transition is null, an error message is printed.  
+Parameters:  
+id: the unique identifier of the transition to fire.  
++ **public void addArc(String sourceId, String targetId, int weight)**  
+Add a regular arc by specifying the source and target objects and the arc's weight. If the weight is not positive, an error message is printed. If the source or target object doesn't exist or if an arc in the same direction already exists, an error message is printed.  
+Parameters:  
+sourceId: the unique identifier of the source object (either a place or a transition).  
+targetId: the unique identifier of the target object (either a place or a transition).  
+weight: an integer representing the weight of the arc.  
++ **public void setArcWeight(String id, int weight)**  
+Set the weight of a selected regular arc. If the weight is not positive or if the selected object is not an instance of the Arc class, an error message is printed.  
+Parameters:  
+id: the unique identifier of the arc.  
+weight: an integer representing the new weight to set for the arc.  
++ **public void addEmptyArc(String sourceId, String targetId)**  
+Add an empty arc connecting a source and target object. If the source or target object doesn't exist or if an arc in the same direction already exists, an error message is printed.  
+Parameters:  
+sourceId: the unique identifier of the source object (either a place or a transition).  
+targetId: the unique identifier of the target object (either a place or a transition).  
++ **public void addZeroArc(String sourceId, String targetId)**  
+Add a zero arc connecting a source and target object. If the source or target object doesn't exist or if an arc in the same direction already exists, an error message is printed.   
+Parameters:  
+sourceId: the unique identifier of the source object (either a place or a transition).  
+targetId: the unique identifier of the target object (either a place or a transition).  
++ **public void removeIArc(String id)**  
+Remove a selected arc, empty arc, or zero arc by its unique identifier. If the selected arc is null, an error message is printed.  
+Parameters:  
+id: the unique identifier of the arc to be removed.  
++ **public String toString()**
+Print the Petri Net.
++ **public void draw()** 
+Draw the figure of the Petri Net using Swing\'s JFrame.
 
 ## PetriNetFigure class: 
 It contains functions to draw arcs, places,
