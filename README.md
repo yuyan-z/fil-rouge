@@ -35,10 +35,6 @@ n: an integer representing the number of tokens to be removed. Must be non-negat
 Add a specified number of tokens to the place.  
 Parameters:  
 n: an integer representing the number of tokens to be added. Must be non-negative. If provided with a negative value, an error message will be printed, and the number of tokens will not be updated.  
-+ **public String getId()**  
-Get the unique identifier of the place.  
-Returns:  
-A string representing the unique identifier of the place.  
 
 
 ## class Arc, ZeroArc and EmptyArc  
