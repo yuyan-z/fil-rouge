@@ -13,8 +13,8 @@ EmptyArc, Transition, PetriNet, and the interfaces IArc, IPetriNet.
 It includes the nTokens attribute, as well as methods for
 obtaining, setting, adding and decreasing the number of tokens in the
 place. 
-+ **public Place(String id, int nTokens)**
-Constructor for creating a new place.
++ **public Place(String id, int nTokens)** \\
+Constructor for creating a new place. \\
 Parameters:
 id: a string representing the unique identifier for the place.
 nTokens: an integer representing the initial number of tokens in the place. Must be non-negative. If provided with a negative value, it will be set to 0.
