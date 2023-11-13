@@ -7,23 +7,23 @@ The visibility of the class PetriNet is `public`, which provides interfaces for 
 
 ## Interface IPetriNet, class PetriNet
 PetriNet class contains the main functions for Petri Net simulation and implemented the interface IPerinet.  
-+ **public PetriNet()**
++ **public PetriNet()**  
 The constructor for creating a PetriNet.  
 It initializes a HashMap of places, a HashMap of transitions and a HashMap of arcs. There are also index for place, transition, and arc with a view to naming their id.  
-+ **public void addPlace(int n)**
++ **public void addPlace(int n)**  
 Add a place to the Petri Net with an initial number of tokens.
 Parameters:
 n: an integer representing the initial number of tokens in the place. If n is negative, an error message is printed.  
-+ **public void removePlace(String id)**
++ **public void removePlace(String id)**  
 Remove a place from the Petri Net by its unique identifier.
 Parameters:
 id: a string representing the unique identifier of the place to be removed.
-+ **public void addPlaceTokens(String id, int n)**
++ **public void addPlaceTokens(String id, int n)**  
 Add tokens to a selected place. If n is negative or the selected place is null, an error message is printed.  
 Parameters:
 id: the unique identifier of the place to add tokens to.
 n: an integer representing the number of tokens to add. 
-+ **public void removePlaceTokens(String id, int n)**
++ **public void removePlaceTokens(String id, int n)**  
 Remove tokens from a selected place. If n is negative or the selected place is null, an error message is printed.  
 Parameters:  
 id: the unique identifier of the place to remove tokens from.  
