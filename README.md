@@ -1,4 +1,4 @@
-Project: Petri net
+# Project: Petri net
 
 A Petri net is made up of places (represented by circles), which contain
 tokens, and transitions (represented by squares). Arcs (carrying a
