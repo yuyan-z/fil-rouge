@@ -1,28 +1,83 @@
-Projet : Réseaux du Petri
+Project: Petri net
 
-Un réseau de Petri est composé de places (représentées par des cercles) qui peuvent contenir des jetons et de transitions (représentées par des carrés). Des arcs (porteurs d’une valeur) relient les places aux transitions (arcs sortants des places) et les transitions aux places (arcs entrants dans des places).
+A Petri net is made up of places (represented by circles), which contain
+tokens, and transitions (represented by squares). Arcs (carrying a
+weight) link places to transitions (arcs leaving squares) and
+transitions to places (arcs entering squares).
 
-Dans notre projet, il y a des différents classes et interfaces pour réaliser le réseau de Petri, dont les classes Place, Arc, ZeroArc, EmptyArc, Transition, PetriNet, et les interfaces IArc, IPetriNet.
+In our project, there are various classes and interfaces for
+implementing the Petri net, including the classes Place, Arc, ZeroArc,
+EmptyArc, Transition, PetriNet, and the interfaces IArc, IPetriNet.
 
-- la classe Place :  comporte l’attribut nTokens, ainsi que les méthodes pour obtenir, définir, ajouter et diminuer le nombre de jetons dans la place.
+\- Place class: includes the nTokens attribute, as well as methods for
+obtaining, setting, adding and decreasing the number of tokens in the
+place. + removeTokens(): will remove out the desired number of tokens in
+the place. + addTokens(): will add the desired number of tokens into the
+place.
 
-- les classes Arc (arcs normaux), ZeroArc (arcs zéro), EmptyArc (arcs videurs) : pour la classe Arec, elle comporte les attributs poids, direction, place et transition. Mais dans les classes ZeroArc et EmptyArc, on n’a besoin des attributs poids et direction parce qu’ils ont seulement une direction de place à transition et n’ont pas de poids.
+\- Arc (normal arcs), ZeroArc (zero arcs) and EmptyArc (empty arcs)
+classes: the Arc class includes weight, direction, place and transition
+attributes. But in the ZeroArc and EmptyArc classes, we don\'t need the
+weight and direction attributes because they only have a direction from
+place to transition and have no weight. + isFirable() in Arc class:
+return true when the number of tokens in the source place is greater
+than the weight of the arc entering transition. + isFirable() in ZeroArc
+class: return true when the number of tokens in the source place is 0. +
+isFirable() in EmptyArc class: return true when the number of tokens in
+the source place is equal or greater than 1s.
 
-- la classe Transition : comporte les attributs inArcs et outArcs de type List < IArc > ainsi que la methode fire() pour tirer la transition.
+\- Transition class: includes inArcs and outArcs attributes of type List
+\< IArc \> as well as the fire() method for firing the transition. +
+addInArc(): add an arc conneting from a place to a transition to the
+list. + addOutArc(): add an arc conneting from a transition to a place
+to the list. + fire(): checks if the Petri net can be fired. If it can
+be fired, remove tokens from source places and add tokens to destination
+places.
 
-- la classe PetriNet : comporte 3 attributs places, transitions et arcs.
+\- PetriNet class: contains the main functions of the Petri net. + The
+constructor instantiate a HashMap of places, a HashMap of transitions
+and a HashMap of arcs. There are also index for place, transition, and
+arc with a view to naming their id. + addPlace(): add a place to the Map
+with their id defined by the index, if the value of tokens is negative,
+throw exception. + removePlace(): remove place out of Petri net if its
+id is equivalent to one of those in the key set. + setPlaceTokens(): set
+the number of tokens in the place according to its id. If the added
+tokens number is negative, throw exception. + addTransitoin(): add a
+transition to the Map with their id defined by the index. +
+removeTransition(): remove transition out of Petri net if its id is
+equivalent to one of those in the key set. + doTransition(): if there is
+no transition, throw exception. If Petri net can be fired, print out
+that transition is fired; else print out transition cannot fire. +
+addArc(): first, check whether this arc is incoming or outgoing type.
+Then check this arc will link which place to which transition. Based on
+its characteristics, it will be added to either outgoing arc list or
+incoming arc list. Finally, update the HashMap of Arc. If any condition
+is not satisfied, throw exception. + setArcWeight(): set arc weight if
+weight is superior to 1, else throw exception. + addZeroArc()/
+addEmptyArc(): add an zero arc/ empty arc to the list if it links a
+place to a transition, else throw exception. + removeArc(): remove arc
+out of Petri net if its id is equivalent to one of those in the key
+set. + changeArcType(): first, get the arc that needs changing and check
+if it exists in the Petri net and it is an incoming arc. Based on the
+id, we will remove the original arc and create a new arc with its new
+type and the same id. + display(): shows the result after firing the
+Petri net on the console + draw() method for visualization using
+Swing\'s JFrame tool, illustrating Petri net simulation with real
+places, transitions and arcs.
 
-- l’interface IArc : fournit des méthodes abstraites qui vont être implémenté dans les classe Arc, ZeroArc, EmptyArc. La méthode getWeight() renvoie le poids de l’arc. La méthode isFirable() vérifie si un arc reliant une place à une transition peut être tiré.
+\- PetriNetFigure class: contains functions to draw arcs, places,
+transitions and simulate 2D Petri Net on JFrame.
 
-- l’interface IPetri : fournit des méthodes pour ajouter ou supprimer des places, des transitions et des arcs, la méthode doTransition() pour tirer la transition de l’identifiant spécifié et les méthodes setArcWeight(), changeArcType().
+\- IArc interface: provides abstract methods to be implemented in Arc,
+ZeroArc and EmptyArc classes.
 
-Par ailleurs, pour mieux illustrer comment fonctionner le réseau de Petri, nous avons ajouté des méthodes drawArc() dans l’interface IArc, display() dans l’interface IPetri pour montrer le résultat. Et finalement, la methode draw() pour visualiser en utilisant l’outil JFrame de Swing.
+\- IPetri interface: provides methods for to be implemented in PetriNet
+class.
 
-Pour lancer le code, il faut entrer dans la classe TestPetriNet et exécuter le programme. On devrait ajuster des valeurs des paramètres tels que les poids, le nombre de jetons, changer le type d’arc, ou ajouter plus de places, arcs, transitions, etc.
-
-Pour le code de test, nous avons testé les méthodes principales telles que addPlace(), addArc(), doTransition(), changeArcType(), ou setArcWeight() si elles fonctionnent comme l’expectation. Dans le futur, nous allons tester les méthodes restantes pour assurer le couverture du code.
-
-
+To simulate the Petri net and see the result, enter the TestPetriNet
+class and execute the program. We will need to adjust parameter values
+such as weights, number of tokens, change the arc type, or add more
+squares, arcs, transitions and so on.
 
 ## Example
 ![image](https://github.com/yuyan-z/fil-rouge/assets/64955334/e78a91eb-7b7f-4a7d-aa80-bb53036fdc14)
