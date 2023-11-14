@@ -52,8 +52,8 @@ id: the unique identifier of the transition to fire.
 + **public void addArc(String sourceId, String targetId, int weight)**  
 Add a regular arc by specifying the source and target objects and the arc's weight. If the weight is not positive, an error message is printed. If the source or target object doesn't exist or if an arc in the same direction already exists, an error message is printed.  
 Parameters:  
-sourceId: the unique identifier of the source object (either a place or a transition).  
-targetId: the unique identifier of the target object (either a place or a transition).  
+sourceId: the unique identifier of the source object.  
+targetId: the unique identifier of the target object.  
 weight: an integer representing the weight of the arc.  
 + **public void setArcWeight(String id, int weight)**  
 Set the weight of a selected regular arc. If the weight is not positive or if the selected object is not an instance of the Arc class, an error message is printed.  
@@ -63,13 +63,13 @@ weight: an integer representing the new weight to set for the arc.
 + **public void addEmptyArc(String sourceId, String targetId)**  
 Add an empty arc connecting a source and target object. If the source or target object doesn't exist or if an arc in the same direction already exists, an error message is printed.  
 Parameters:  
-sourceId: the unique identifier of the source object (either a place or a transition).  
-targetId: the unique identifier of the target object (either a place or a transition).  
+sourceId: the unique identifier of the source object.  
+targetId: the unique identifier of the target object.  
 + **public void addZeroArc(String sourceId, String targetId)**  
 Add a zero arc connecting a source and target object. If the source or target object doesn't exist or if an arc in the same direction already exists, an error message is printed.  
 Parameters:  
-sourceId: the unique identifier of the source object (either a place or a transition).  
-targetId: the unique identifier of the target object (either a place or a transition).  
+sourceId: the unique identifier of the source object.  
+targetId: the unique identifier of the target object.  
 + **public void removeIArc(String id)**  
 Remove a selected arc, empty arc, or zero arc by its unique identifier. If the selected arc is null, an error message is printed.  
 Parameters:  
