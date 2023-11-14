@@ -3,7 +3,7 @@
 A Petri net is made up of places which contain tokens, transitions and arcs that carry a weight linking places to transitions or transitions to places.
 
 The main classes and interfaces for implementing the Petri net are shown as below.
-The visibility of the class PetriNet is `public`, which provides interfaces for users. While the visibility of class Place, Transition, Arc, EmptyArc, ZeroArc is `defaut`, which can prevent users from directly modifying objects of these classes. For example, it can prevent users from directly calling the constructors of these classes to generate objects that are not added to Petri Net.
+The visibility of the class PetriNet is `public`, which provides interfaces for users. While the visibility of class Place, Transition, Arc, EmptyArc, ZeroArc is `default`, which can prevent users from directly modifying objects of these classes. For example, it can prevent users from directly calling the constructors of these classes to generate objects that are not added to Petri Net.
 
 ## Interface IPetriNet, class PetriNet
 PetriNet class contains the main functions for Petri Net simulation and implemented the interface IPerinet.  
