@@ -11,9 +11,9 @@ PetriNet class contains the main functions for Petri Net simulation and implemen
 The constructor for creating a PetriNet.  
 It initializes a HashMap of places, a HashMap of transitions and a HashMap of arcs. There are also index for place, transition, and arc with a view to naming their id.  
 + **public void addPlace(int n)**  
-Add a place to the Petri Net with an initial number of tokens.
+Add a place to the Petri Net with an initial number of tokens. If n is negative, an error message is printed.  
 Parameters:  
-n: an integer representing the initial number of tokens in the place. If n is negative, an error message is printed.  
+n: an integer representing the initial number of tokens in the place.  
 + **public void removePlace(String id)**  
 Remove a place from the Petri Net by its unique identifier.  
 Parameters:  
