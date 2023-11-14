@@ -1,11 +1,11 @@
 # Project: Petri net
-
 A Petri net is made up of places which contain tokens, transitions and arcs that carry a weight linking places to transitions or transitions to places.
 
+## Source code
 The main classes and interfaces for implementing the Petri net are shown as below.
 The visibility of the class PetriNet is `public`, which provides interfaces for users. While the visibility of class Place, Transition, Arc, EmptyArc, ZeroArc is `default`, which can prevent users from directly modifying objects of these classes. For example, it can prevent users from directly calling the constructors of these classes to generate objects that are not added to Petri Net.
 
-## Interface IPetriNet, class PetriNet
+### Interface IPetriNet, class PetriNet
 PetriNet class contains the main functions for Petri Net simulation and implemented the interface IPerinet.  
 + **public PetriNet()**  
 The constructor for creating a PetriNet.  
@@ -81,10 +81,10 @@ The string to describe the Petri Net.
 + **public void draw()**  
 Draw the figure of the Petri Net using Swing\'s JFrame.  
 
-## class PetriNetFigure
+### class PetriNetFigure
 It contains functions to draw arcs, places, transitions and simulate 2D Petri Net on JFrame.  
 
-## class Place
+### class Place
 It includes the nTokens attribute, as well as methods for obtaining, setting, adding and decreasing the number of tokens in the place.  
 + **public Place(String id, int nTokens)**  
 Constructor for creating a new place.  
@@ -108,7 +108,7 @@ Add a specified number of tokens to the place.
 Parameters:  
 n: an integer representing the number of tokens to be added. Must be non-negative. If provided with a negative value, an error message will be printed, and the number of tokens will not be updated.  
 
-## Interface IArc, class Arc, class ZeroArc, class EmptyArc
+### Interface IArc, class Arc, class ZeroArc, class EmptyArc
 IArc interface provides abstract methods to be implemented in Arc, ZeroArc and EmptyArc classes.  
 The Arc class includes weight, direction, place and transition as attributes.  
 But in the ZeroArc and EmptyArc classes, they only have a fixed direction from place to transition and have a fixed weight.
@@ -132,7 +132,7 @@ For ZeroArc, it's firable when the number of tokens in the source place is 0;
 Returns:  
 true if the arc is firable; otherwise, false.  
 
-## class Transition
+### class Transition
 It includes inArcs and outArcs attributes of type List \< IArc \> as well as the fire() method for firing the transition. 
 + **public Transition(String id)**  
 Constructor for creating a new transition.  
