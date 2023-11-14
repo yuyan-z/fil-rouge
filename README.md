@@ -160,19 +160,19 @@ There are 2 JUnit test classes for testing the Petri Net project: PetriNetCreati
 The coverage in EclEmma reached 99.1%. The uncovered codes are in the constructer of the class Place and class Arc to check the validity of parameters, because the parameters have been checked in the Petri Net. The other is in the setWeight() function of the class EmptyArc and class Zero Arc, because their weight don't need to be setted.
 
 ## Example usage
-1. Add places and a transition
+1. Add places and a transition  
 ![image](https://github.com/yuyan-z/fil-rouge/blob/main/example/1.png)
 
-2. Add arcs
+2. Add arcs  
 ![image](https://github.com/yuyan-z/fil-rouge/blob/main/example/2.png)
 
-3. Fire the transition, the first time can fire, the second time can't
+3. Fire the transition, the first time can fire, the second time can't  
 ![image](https://github.com/yuyan-z/fil-rouge/blob/main/example/3.png)
 
-5. Modify the Petrinet, and fire the transition
+5. Modify the Petrinet, and fire the transition  
 ![image](https://github.com/yuyan-z/fil-rouge/blob/main/example/4.png)
 
-6. Remove the place (and the related arcs), remove the transition (and the related arcs)
+6. Remove the place (and the related arcs), remove the transition (and the related arcs)  
 ![image](https://github.com/yuyan-z/fil-rouge/blob/main/example/5.png)
 
 
