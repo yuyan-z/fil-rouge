@@ -155,13 +155,13 @@ Checks if the Petri net can be fired. If it can be fired, remove tokens from sou
 places.  
 Returns: true if all the incoming arcs are firable, and the transition is fired; otherwise, false.
 
+## Test
+There are 2 JUnit test classes for testing the Petri Net project: PetriNetCreationTest in the section 7.2 of test plan, PetriNetActivationTest for the section 7.3 of test plan.  
+The coverage in EclEmma reached 99.1%. The uncovered codes are in the constructer of the class Place and class Arc to check the validity of parameters, because the parameters have been checked in the Petri Net. The other is in the setWeight() function of the class EmptyArc and class Zero Arc, because their weight don't need to be setted.
 
-
-## Example
-![image](https://github.com/yuyan-z/fil-rouge/assets/64955334/e78a91eb-7b7f-4a7d-aa80-bb53036fdc14)
-
+## Example usage
 1. Add places and a transition
-![image](https://github.com/yuyan-z/fil-rouge/assets/64955334/5e7848b7-b21a-4cea-b2eb-12a43d23013b)
+[![image](https://github.com/yuyan-z/fil-rouge/assets/64955334/5e7848b7-b21a-4cea-b2eb-12a43d23013b)](https://github.com/yuyan-z/fil-rouge/blob/main/example/1.png)
 
 2. Add arcs
 ![image](https://github.com/yuyan-z/fil-rouge/assets/64955334/1ffd5a4f-f9ce-49c1-80f6-7f730603b19a)
