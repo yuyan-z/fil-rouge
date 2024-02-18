@@ -1,4 +1,4 @@
-# Project: Petri net
+# Petri Net Simulator
 A Petri net is made up of places which contain tokens, transitions and arcs that carry a weight linking places to transitions or transitions to places.
 
 ## Source code
